@@ -30,6 +30,11 @@ COPY --from=builder /app/next.config.js ./
 # Se invoca con STRESS_PATH=/usr/bin/stress-ng
 RUN apk add --no-cache stress-ng
 
+# stress-ng escribe archivos temporales en su temp-path (el cwd '.', que es /app).
+# Damos a 'node' la propiedad del directorio para que pueda crearlos; si no,
+# aborta con "temp-path must be readable and writeable".
+RUN chown node:node /app
+
 # Ejecutar como usuario sin privilegios (mejor practica de seguridad)
 USER node
 

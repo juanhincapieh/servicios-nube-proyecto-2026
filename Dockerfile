@@ -10,7 +10,7 @@ RUN npm ci
 
 # Copiar el resto del codigo y compilar.
 COPY . .
-RUN npm run build
+RUN npx next build
 
 # ---- Etapa 2: runtime ----
 FROM node:20-alpine AS runner

@@ -25,6 +25,11 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./
 
+# Binario para la prueba de stress (Punto 5). stress-ng acepta las mismas
+# flags que usa la app (--cpu/--io/--vm/--vm-bytes/--timeout).
+# Se invoca con STRESS_PATH=/usr/bin/stress-ng
+RUN apk add --no-cache stress-ng
+
 # Ejecutar como usuario sin privilegios (mejor practica de seguridad)
 USER node
 

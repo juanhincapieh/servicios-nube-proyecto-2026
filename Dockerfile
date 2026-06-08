@@ -10,6 +10,11 @@ RUN npm ci
 
 # Copiar el resto del codigo y compilar.
 COPY . .
+# LOAD_BALANCER_URL debe existir en BUILD time: Next hornea el destino de los
+# rewrites (next.config.js) en routes-manifest.json durante 'next build', no en
+# runtime. Llega como build-arg desde docker-compose (no es secreto).
+ARG LOAD_BALANCER_URL
+ENV LOAD_BALANCER_URL=$LOAD_BALANCER_URL
 RUN npx next build
 
 # ---- Etapa 2: runtime ----

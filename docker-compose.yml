@@ -3,6 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # Se pasa al build para que Next hornee el destino del rewrite /proxy.
+      # El valor se toma del .env (interpolacion de compose).
+      args:
+        LOAD_BALANCER_URL: ${LOAD_BALANCER_URL:-}
     image: nexacloud-web
     container_name: nexacloud
     # host:80 -> contenedor:3000  (Next escucha en 3000)

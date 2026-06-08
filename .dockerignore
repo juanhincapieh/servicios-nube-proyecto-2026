@@ -1,0 +1,23 @@
+# Dependencias y build (se generan dentro de la imagen)
+node_modules
+.next
+
+# Control de versiones y metadatos
+.git
+.gitignore
+
+# Entorno y secretos (se inyectan en runtime, NO se copian a la imagen)
+.env
+.env.local
+.env.*.local
+
+# Artefactos y logs
+*.zip
+npm-debug.log*
+yarn-error.log*
+
+# Docs / infra que no necesita la imagen
+README.md
+Dockerfile
+.dockerignore
+docker-compose.yml

@@ -5,7 +5,7 @@ let mainPool: Pool;
 const getPool = () => {
   if (!mainPool) {
     mainPool = new Pool({
-      connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:9876/${process.env.DB_DATABASE}`,
+      connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`,
       application_name: 'ServiciosEnLaNube',
       ssl: {
         rejectUnauthorized: false
